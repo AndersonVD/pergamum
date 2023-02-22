@@ -56,7 +56,7 @@ class PageHtml extends StatelessWidget {
               const username = '2020006767';
               const password = '4554';
               // Preencher o formulário de login com as credenciais
-              await controller.evaluateJavascript('''
+              await controller.runJavascript('''
                 var username = document.getElementById("id_login");
                 var password = document.getElementById("id_senhaLogin");
                 var form = document.getElementsByTagName("form")[0];
@@ -86,7 +86,7 @@ class PageHtml extends StatelessWidget {
 
   Future<String> _getPageData() async {
     final controller = await _webviewController.future;
-    return controller.evaluateJavascript('''
+    return controller.runJavascriptReturningResult('''
       // Inserir aqui o código para extrair os dados desejados da página
       document.querySelector("#Accordion1 > div.AccordionPanel.AccordionPanelOpen > div.c1 > table > tbody > tr:nth-child(2) > td:nth-child(2) > a").textContent
     ''');
